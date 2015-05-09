@@ -47,6 +47,36 @@
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 \definecolor{myorange}{RGB}{246,177,50}
 % CUSTOM COMMANDS =============================================================
+% FIGURE SETUP ===============================================================
+
+\newcommand\diagram[2]{
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]
+		{diagrams/#2}
+		\caption{#1}
+		\label{fig:#2}
+	\end{figure}
+}
+
+\newcommand\diagramscale[3]{
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale={#3}]
+		{diagrams/#2}
+		\caption{#1}
+		\label{fig:#2}
+	\end{figure}
+}
+\newcommand\diagramstrict[2]{
+	\begin{figure}[H]
+		\centering
+		\includegraphics[keepaspectratio]
+		{diagrams/#2}
+		\caption{#1}
+		\label{fig:#2}
+	\end{figure}
+}
 
 \newcommand\fixme{\textrm{\textbf{\textcolor{red}{FIXME: }}}}
 \newcommand\todo{\textrm{\textbf{\textcolor{myorange}{TODO: }}}}
@@ -111,7 +141,7 @@
 \maketitle
 \def\templen{\parindent}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{1.5ex plus 0.5ex minus 0.2ex}
+\setlength{\parskip}{2.0ex plus 0.5ex minus 0.2ex}
 \include{abstract}
 
 \setlength{\parindent}{\templen}
@@ -124,7 +154,7 @@
 \mainmatter
 % moved these two commands here so that they don't influence the toc
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{1.5ex plus 0.5ex minus 0.2ex}
+\setlength{\parskip}{2.0ex plus 0.5ex minus 0.2ex}
 
 \renewcommand\floatpagefraction{.7}
 
