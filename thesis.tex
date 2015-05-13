@@ -142,6 +142,8 @@
 \def\templen{\parindent}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2.0ex plus 0.5ex minus 0.2ex}
+\begin{large}
+
 \include{abstract}
 
 \setlength{\parindent}{\templen}
@@ -149,7 +151,7 @@
 \tableofcontents
 \listoffigures
 \listoftables
-\renewcommand{\lstlistlistingname}{List of Listings}
+\renewcommand{\lstlistlistingname}{Κατάλογος }
 
 \mainmatter
 % moved these two commands here so that they don't influence the toc
@@ -160,8 +162,9 @@
 
 \include{intro}
 \include{background}
+\include{design}
 
-
+\end{large}
 
 
 \end{document}
