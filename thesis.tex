@@ -3,11 +3,14 @@
 \usepackage{fontspec}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{pifont}
 \usepackage{multirow}
 \usepackage{array}
 \usepackage{mdwlist}
 \usepackage{subfig}
-\usepackage{floatrow}
+%\usepackage{floatrow}
 %\usepackage{float}
 \usepackage{verbatim}
 \usepackage{color}
@@ -90,7 +93,6 @@
 
 
 
-
 \lstset{
 	backgroundcolor=\color{white},
 	basicstyle=\small\ttfamily,		% style for code
@@ -151,7 +153,8 @@
 \tableofcontents
 \listoffigures
 \listoftables
-\renewcommand{\lstlistlistingname}{Κατάλογος }
+\renewcommand{\lstlistlistingname}{Κατάλογος Κώδικα}
+\lstlistoflistings % changed the title above
 
 \mainmatter
 % moved these two commands here so that they don't influence the toc
@@ -163,6 +166,21 @@
 \include{intro}
 \include{background}
 \include{design}
+
+\begin{algorithm}
+\caption{CH election algorithm}
+\label{CHalgorithm}
+\begin{algorithmic}[1]
+\Procedure{CH\textendash Election}{}
+\For{each node $i$ \Pisymbol{psy}{206} $N$ }
+\State Broadcast HELLO message to its neighbor
+\State let $k$ \Pisymbol{psy}{206} $N1$ ($i$) U {$i$} be s.t
+\State QOS($k$) = max {QOS($j$) \textbar $j$ \Pisymbol{psy}{206} $N1$($i$)  U $i$}
+\State MPRSet($i$) = $k$
+\EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 \end{large}
 
