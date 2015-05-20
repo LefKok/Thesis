@@ -49,6 +49,10 @@
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 \definecolor{myorange}{RGB}{246,177,50}
+\definecolor{myblue}{rgb}{0.13,0.13,1}
+\definecolor{mybordo}{rgb}{0.37, 0.08, 0.25}  
+
+
 % CUSTOM COMMANDS =============================================================
 % FIGURE SETUP ===============================================================
 
@@ -83,8 +87,7 @@
 
 \newcommand\fixme{\textrm{\textbf{\textcolor{red}{FIXME: }}}}
 \newcommand\todo{\textrm{\textbf{\textcolor{myorange}{TODO: }}}}
-\newcommand\mytilde{\raise.17ex\hbox{$\scriptstyle\sim$}}
-\newcommand\okeanos{\textbf{\raise.17ex\hbox{$\scriptstyle\sim$}okeanos }}
+
 \newtheorem{reliability}{Ορισμός 2 (Εμπιστοσύνη Αξιοπιστίας)}
 \newtheorem{decision}{Ορισμός 3 (Εμπιστοσύνη Απόφασης)}
 \newtheorem{soft_sec}{Ορισμός 1 (Soft Security)}
@@ -97,6 +100,7 @@
 	backgroundcolor=\color{white},
 	basicstyle=\small\ttfamily,		% style for code
 	breakatwhitespace=false,        % sets if automatic breaks should only
+ keywordstyle=\color{mybordo},
 									% happen at whitespace
 	breaklines=true,                % sets automatic line breaking
 	captionpos=b,                   % sets the caption-position to bottom
@@ -113,9 +117,21 @@
 	rulecolor=\color{black},
 	stepnumber=1,                   % the step between two line-numbers. If 
 					% it's 1, each line will be numbered
-	stringstyle=\color{mymauve},    % style for strings
+	stringstyle=\color{myblue},    % style for strings
 	tabsize=2,                      % sets default tabsize to 2 spaces
 }
+
+% Define specific rules for each language
+
+\lstdefinestyle{java}
+{
+	language=java
+}
+
+\newcommand\javacode[2]{
+	\lstinputlisting[style=java, caption={#1}, label=lst:#2]{src/#2}
+}
+
 \usepackage[xetex,colorlinks=true,linkcolor=blue,citecolor=darkgreen]{hyperref}
 
 \begin{document}
@@ -166,7 +182,7 @@
 \include{intro}
 \include{background}
 \include{design}
-
+\include{implementation}
 
 \end{large}
 
