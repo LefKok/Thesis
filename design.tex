@@ -340,7 +340,6 @@ en.wikipedia.org/wiki/Six\_degrees\_of\_separation} οπότε το μέγιστ
 Όταν τις μαζέψει (τις προτεινόμενες για φίλους Εικονικές Οντότητες) υπολογίζει τον δείκτη φήμης αυτών, όπως περιγράφηκε στην ενότητα \ref{sec:calculate_rep}, και κρατάει την πιο φημισμένη μαζί με την Εικονική Οντότητα που την πρότεινε. Στη συνέχεια  ζητάει την υπηρεσία που υποτίθεται ότι παρέχει καλά και αν όντως είναι αρκετά καλή την εισάγει ως φίλο στην κατάλληλη δομή από log files. Ό,τι και να γίνει αξιολογεί την αρχική Εικονική Οντότητα που έκανε την πρόταση ανάλογα με το αποτέλεσμα.
 
 Εάν αποτύχει αυτή η μέθοδος επειδή οι φίλοι δεν μπορούσαν να βρουν προτάσεις συνεχίζει στην συγκεντρωτική μέθοδο.
-\newpage
 
 
 \subsubsection{Απόκτηση φίλων από την Πλατφόρμα}
@@ -353,42 +352,30 @@ en.wikipedia.org/wiki/Six\_degrees\_of\_separation} οπότε το μέγιστ
 
 Αυτό σημαίνει πως στην περίπτωση χειραγώγησης της πλατφόρμας, όπου οι καλοί θα φαίνονται κακοί, υπάρχει 20\% πιθανότητα να προταθεί κάποιος καλός και να  κρατηθεί αυτός ως φίλος από την Εικονική Οντότητα που ζήτησε φίλους. Επίσης αυτό το 20\% βοηθάει στην ενσωμάτωση νέων Εικονικών Οντοτήτων στο σύστημα, μίας και θα έχουν μηδενική φήμη.
 Σίγουρα έτσι δίνουμε μία μικρή ευκαιρία σε κακόβουλους να εκμεταλλευτούν το σύστημα αλλά θεωρούμε πώς το trade-off είναι θεμιτό.
-
+\newpage
 
 \subsection{Μέθοδος Απόρριψης Κακόβουλων φίλων(BlackListing)}\label{sec:blacklisting}
 
 Για να μπορέσει μία εικονική Οντότητα να διατηρήσει ένα καλό επίπεδο ικανοποίησης χρειάζεται έναν τρόπο να διαγράφει φίλους οι οποίοι είναι ή έγιναν κακόβουλοι. Αυτό πρέπει να συμβεί επειδή αλλιώς θα γέμιζε η οντότητα με κακόβουλους φίλους. Αλλά λόγω της εξασθένισης σε συνδυασμό με τον ποσοστό που υπάρχει για επιλογή τυχαίου φίλου η πιθανότητα αυτός να είναι κακόβουλος θα ήταν υψηλή.
 
 Έτσι αποφασίστηκε οι Εικονικές Οντότητες να έχουν μία μέθοδο απόρριψης που τρέχει περιοδικά ελέγχοντας εάν η εμπιστοσύνη σε κάποιον φίλο είναι χαμηλή και τότε τον διαγράφει. Με αυτό τον τρόπο το μεγαλύτερο ποσοστό των φίλων θα είναι καλόβουλοι.
-%\begin{algorithm}
-%\caption{Friend Acquisition Method: Distributed}
-%\label{distributed friends}
-%\begin{algorithmic}[1]
-%\Procedure{Distributed\textendash Friend\textendash Acquistion}{}
-%\State Priorirty Queue A =  Rank_friends(Recommending)
-%\while
+\begin{algorithm}
+\caption{Blacklist Method: Distributed}
+\label{blacklist}
+\begin{algorithmic}[1]
+\Procedure{Blacklist}{}
+\For{each service $i$ \Pisymbol{psy}{206} $Services$ }
+\State $ Priorirty Queue A =  Rank\_friends\left(service\right)$
+\While{$A\neq empty$}
+\State $friend=A.pop\left(\right)$
+\If{(friend.trust < 0.5 \&\& friend.log.size()>0)}
+\State $friend.remove\left(\right)$
+\EndIf
+\EndWhile
+\EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 
-%\For{each friend $i$ \Pisymbol{psy}{206} $Service$ }
-%\If{size(log file) > 5}
-%\State $T_{short}=$caculate Trust(i,$\frac{size \left(log file\right)}{10}$)
-%   \Else \State $T_{short}=1.0$
- %  \EndIf
-%\State $T_{long}=$caculate Trust(i,$size \left(log file\right)$)
-%\State $ T = min(T_{long} \  , \  T_{short})$
-%\If{$T \ > \ Trust$}
-%	\State Best=i
-%	\State Trust=T
-%\EndIf
-%\EndFor
-%\If{ $Trust \geq threshold$}
-%	\State RequestService(Service,Best)
-%	\Else 
-%	\If{$\left(threshold \  indicates\  low\  severity\right)\  AND\ \left( Math.random() \leq 0.1\right)$}
-%			\State RequestService(Service,Random friend with zero trust)
-%	\EndIf
-%\EndIf
 
-%\EndProcedure
-%\end{algorithmic}
-%\end{algorithm}
